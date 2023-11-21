@@ -1,0 +1,14 @@
+// 大屏宽度
+$screenWidth: 1440;
+// 大屏高度
+$screenHeight: 768;
+
+// 计算得来的 宽度 + 单位
+@function vw($px) {
+    @return ($px / $screenWidth) * 100vw;
+}
+
+// 计算得来的 高度度 + 单位
+@function vh($px) {
+    @return ($px / $screenHeight) * 100vh;
+}

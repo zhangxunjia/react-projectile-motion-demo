@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "checkJs": true,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "new_autoops_web"
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

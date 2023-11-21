@@ -1,0 +1,36 @@
+.demo1{
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  // 修改成功确认按钮
+  .success-button{
+    .ant-float-btn-body{
+      background-color: #58c621;
+      .ant-float-btn-icon{
+        color: #fff;
+      }
+    }
+  }
+  .float-button{
+    right: 94px;
+  }
+  .start{
+    position: absolute;
+    display: inline-block;
+    background: url('~src/assets/images/plus.png') center center no-repeat;
+    background-size: contain;
+    border: 2px transparent dotted;
+  }
+  .end{
+    position: absolute;
+    display: inline-block;
+    background: url('~src/assets/images/shopCar.png') center center no-repeat;
+    background-size: contain;
+    border: 2px transparent dotted;
+  }
+
+  .edit-status{
+    border: 2px gray dotted;
+  }
+}

@@ -1,0 +1,23 @@
+// @import 'src/assets/css/variable.scss';
+
+.demo-container{
+  height: 100%;
+  width: 100%;
+  .ant-tabs-nav{
+    margin: 0;
+    padding: 0 2%;
+    height: 50px;
+    // padding: 0 vw(60);
+    // .ant-tabs-tab{
+    //   font-size: vh(60);
+    // }
+  }
+  .ant-tabs-content-holder{
+    .ant-tabs-content{
+      height: 100%;
+      .ant-tabs-tabpane{
+        height: 100%;
+      }
+    }
+  }
+}
