@@ -87,12 +87,13 @@ const ProjectileMovment = (props) => {
     const getEndingDomCenterPointLeft = () => endingDom.getBoundingClientRect().left + visibleAreaToLeft() + endingDom.getBoundingClientRect().width / 2 - projectileRef.current.getBoundingClientRect().width / 2
 
     /**
-     * 抛掷动画开始
+     * 抛掷动画开始 - Projectile animation starts
      * @param {*} startingPointRect 开始点的dom的getBoundingClientRect()返回值 - getBoundingClientRect() return value of the starting point dom
      * @param {*} type 抛掷动画开始的类型  1.init初始抛掷  2.resize 屏幕缩放导致的抛掷  3.readjust 因抛掷动画endingDom移动导致终点错位而重新发起的抛掷 - Type of projectile animation start 1.init initial throw 2.resize screen scaling caused by the throw 3.readjust due to the displacement of the end point caused by the movement of the projectile animation endingDom Re-initiated projectile
     */
     const move = (startingPointRect, type) => {
         // 当前时间的时间戳
+        // Timestamp of current time
         const time = new Date().getTime();
         // 抛掷动画剩余时间
         // Projectile animation remaining time
@@ -201,7 +202,6 @@ const ProjectileMovment = (props) => {
         // 因transition设置的left和top时间是一样但其他不一样，这会导致transitionend事件会触发两次，所以这里做了防止同一事件触发两次的处理
         // Because the time set by transition is the same but others are different, this will cause the transitionend event to be triggered twice, so here is the processing to prevent the same event from being triggered twice
         if(!trasitionEndHasCalled.current) {
-            trasitionEndHasCalled.current = true
             // 判断抛掷物是否达到了目的点（若抛物运动过程中，endingDom位置发生了移动则终点位置不是目的点）- 此处的做法为将其目前位置作为起点，endingDom目前位置作为终点进行一次平抛
             // Determine whether the projectile has reached the destination point (if the endingDom position has changed during the projectile movement, the end point is not the destination point) - the current position is used as the starting point here, and the current position of endingDom is used as the end point for a flat throw
             const {
@@ -226,6 +226,7 @@ const ProjectileMovment = (props) => {
             // 抛掷终点是endingDom的位置
             // The end point of the projectile is the position of endingDom
             } else {
+                trasitionEndHasCalled.current = true
                 deleteProjectile(props);
                 if (typeof projectileMovmentEnd === 'function') {
                     projectileMovmentEnd();

@@ -16,7 +16,7 @@ import { debounce, uuid } from '../../tools/utils';
  * @param {number} props.zIndex - 设置抛掷物的zIndex 默认为2147483647 - Set the zIndex of the projectile, the default is 2147483647
  * @param {boolean} props.needEndingDomAnimation - endingDom是否需要被抛掷物击中后动画 默认为true - Whether endingDom needs to be animated after being hit by the projectile
  * @param {function} props.projectileMovmentEnd - 抛物运动动画结束回调 - Projectile motion animation end callback
- * @param {function} props.endingDomAnimationEnd - endingDom动画结束回调 - endingDom animation end callback
+ * @param {function} props.endingDomAnimationEnd - endingDom被击中产生的动画的结束回调 - endingDom animation end callback
  * @param {number} props.endingDomAnimationDuration - endingDom被抛掷物击中后动画持续时间 - The duration of the animation after endingDom is hit by the projectile
  * @param {string} props.endingDomAnimationName - endingDom被抛掷物击中后的animation的名称（animation需在全局）- The name of the animation after endingDom is hit by the projectile (animation needs to be global)
  * @param {string} props.additionalTransformValueInAnimate - 补充的动画的transform值，传入该值后会生成新的类名，该类会整合endingDomAnimationName对应的keyframe除最后一帧外的其他帧，形成新的类，然后供endingDom应用。可以设置rotate scale translate skew 等值，若设置多个请用空格隔开 - Additional animation transform value, after passing in this value, a new class name will be generated, which will integrate all the frames of the keyframe corresponding to endingDomAnimationName except the last frame, forming a new class, and then apply it to endingDom. You can set rotate scale translate skew and other values, if you set multiple, please use spaces to separate

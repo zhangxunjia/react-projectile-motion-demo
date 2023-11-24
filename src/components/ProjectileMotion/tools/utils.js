@@ -1,5 +1,6 @@
 
 // 防抖函数
+// debounce
 export function debounce (fn, wait = 50, immediate = false) {
     let timer = null
     return function(...args) {
@@ -14,6 +15,7 @@ export function debounce (fn, wait = 50, immediate = false) {
 }
 
 // 生成uuid
+// generate uuid
 export const uuid = () => {
     function S4() {
         // eslint-disable-next-line no-bitwise
