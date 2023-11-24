@@ -72,7 +72,7 @@ const EndCom = (props) => {
     return (
         <>
             <img
-                className="ending-shop-car"
+                className="ending-bin"
                 ref={endingDom}
                 src={binIcon}
                 alt="binIcon"
