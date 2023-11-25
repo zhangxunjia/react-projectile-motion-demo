@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-projectile-motion-demo/static/css/main.cd4772b5.css",
-    "main.js": "/react-projectile-motion-demo/static/js/main.5a6e5a62.js",
-    "static/media/dog2.png": "/react-projectile-motion-demo/static/media/dog2.b9543cee3b9ddede28d7.png",
+    "main.css": "/react-projectile-motion-demo/static/css/main.36208c5f.css",
+    "main.js": "/react-projectile-motion-demo/static/js/main.bd81090a.js",
+    "static/media/dog-grow-up.png": "/react-projectile-motion-demo/static/media/dog-grow-up.b9543cee3b9ddede28d7.png",
     "static/media/bin.ico": "/react-projectile-motion-demo/static/media/bin.615c1d078047a00139f6.ico",
-    "static/media/dog1.png": "/react-projectile-motion-demo/static/media/dog1.ce5a61d096dc74655d5a.png",
+    "static/media/dog-small.png": "/react-projectile-motion-demo/static/media/dog-small.ce5a61d096dc74655d5a.png",
     "index.html": "/react-projectile-motion-demo/index.html",
-    "main.cd4772b5.css.map": "/react-projectile-motion-demo/static/css/main.cd4772b5.css.map",
-    "main.5a6e5a62.js.map": "/react-projectile-motion-demo/static/js/main.5a6e5a62.js.map"
+    "main.36208c5f.css.map": "/react-projectile-motion-demo/static/css/main.36208c5f.css.map",
+    "main.bd81090a.js.map": "/react-projectile-motion-demo/static/js/main.bd81090a.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd4772b5.css",
-    "static/js/main.5a6e5a62.js"
+    "static/css/main.36208c5f.css",
+    "static/js/main.bd81090a.js"
   ]
 }
