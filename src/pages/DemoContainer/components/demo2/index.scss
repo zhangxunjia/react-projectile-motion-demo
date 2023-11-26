@@ -13,8 +13,6 @@
       width: 50px;
       height: 50px;
       display: none;
-      background: url('~src/assets/images/stick.png') center center no-repeat;
-      background-size: contain;
       position: absolute;
       left: -75px;
       transform: rotate(-45deg);
@@ -46,8 +44,6 @@
       display: inline-block;
       width: 50px;
       height: 50px;
-      background: url('~src/assets/images/dog1.png') center center no-repeat;
-      background-size: contain;
       // 狗子激活状态
       &-inactive{
         visibility: hidden;
@@ -58,8 +54,6 @@
       width: 75px;
       height: 75px;
       visibility: hidden;
-      background: url('~src/assets/images/bang.png') center center no-repeat;
-      background-size: contain;
       position: absolute;
       left: -16px;
       bottom: -18px;

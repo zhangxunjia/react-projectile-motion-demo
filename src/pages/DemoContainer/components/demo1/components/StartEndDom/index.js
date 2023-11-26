@@ -9,6 +9,7 @@ const StartEndDom = forwardRef((props, ref) => {
         item,
         movingStatus,
         settingStatus,
+        imgMap,
         ...otherProps
     } = props
 
@@ -22,7 +23,9 @@ const StartEndDom = forwardRef((props, ref) => {
             <Draggable
                 disabled={!movingStatus}
             >
-                <div
+                <img
+                    src={imgMap[type].src}
+                    alt="图片加载失败"
                     ref={ref}
                     className={`${type} ${settingStatus ? 'edit-status' : ''}`}
                     style={item.style}

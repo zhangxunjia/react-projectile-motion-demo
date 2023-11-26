@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useReducer, useRef } from 'react';
 import EndCom from './components/EndCom';
 import StartCom from './components/StartCom';
+import { getImage } from 'src/tools/axios'
+import DemoWrapper from 'src/components/DemoWrapper'
 import './index.scss'
 import { FloatButton, message } from 'antd';
 import { SettingOutlined, PlusOutlined, AimOutlined, CheckOutlined, ShoppingCartOutlined  } from '@ant-design/icons';
@@ -38,7 +40,21 @@ const initialState = {
     editDetailOpen: false,
     // 编辑框是否可见
     editOpen: false,
-    editData: {}
+    // 编辑框的数据
+    editData: {},
+    // 图片映射
+    imgMap: {
+        start: {
+            url:require('src/assets/images/start.png'),
+            src:''
+        },
+        end: {
+            url: require('src/assets/images/end.png'),
+            src:''
+        }
+    },
+    // 加载状态
+    loading: false
 }
 
 // 新增的 startDom 的默认设置
@@ -70,7 +86,9 @@ const Demo = () => {
         settingStatus,
         editOpen,
         editData,
-        editType
+        editType,
+        imgMap,
+        loading
     } = state;
 
     const demoRef = useRef();
@@ -87,6 +105,36 @@ const Demo = () => {
 
     // 是否为移动端
     const isMobile = /iPhone|iPad|iPod|Android|Windows Phone/i.test(navigator.userAgent);
+
+    // 加载本demo所需图片
+    const loadImages = () => {
+        dispatch({
+            loading: true
+        })
+        Promise.all(Object.entries(imgMap).map(([key, value]) => getImage(value.url)))
+            .then((resList) => {
+                dispatch({
+                    imgMap: {
+                        start: {
+                            url:require('src/assets/images/start.png'),
+                            src: resList[0]
+                        },
+                        end: {
+                            url: require('src/assets/images/end.png'),
+                            src: resList[1]
+                        }
+                    }
+                })
+            })
+            .catch(() => message.error('图片加载失败'))
+            .finally(() => dispatch({
+                loading: false
+            }))
+    }
+
+    useEffect(() => {
+        loadImages()
+    }, [])
 
     useEffect(() => {
         if(isEditing) {
@@ -175,7 +223,7 @@ const Demo = () => {
     // FloatButton 对应的 Draggable 拖动停止
     // 注意: react-draggable子元素的点击事件和Draggable的onStart,onStop等事件会同时触发
     // 判断 onStart 和 onStop 事件前后 Draggable 发生变化，无变化则为点击事件，变化了就是拖动事件
-    const onFloatButtonDraggableStop = (event) => {
+    const onFloatButtonDraggableStop = () => {
         if(JSON.stringify(getFloatButtonBoundingClientRect()) === draggableDomPositionRef.current) {
             // 因移动端的事件是由onTouchStart触发的，触发onTouchStart的同时又会触发onFloatButtonDraggableStop，但onClick不会
             if(isMobile){
@@ -245,29 +293,32 @@ const Demo = () => {
     }
 
     return (
-        <div
+        <DemoWrapper
+            loading={loading}
             ref={demoRef}
             className="demo1"
         >
             {
-                startComList.map((item) => (
+                imgMap && imgMap.start && startComList.map((item) => (
                     <StartCom
                         key={item.id}
                         item={item}
                         movingStatus={movingStatus}
                         settingStatus={settingStatus}
                         openEditModal={openEditModal}
+                        imgMap={imgMap}
                     />
                 ))
             }
             {
-                endComList.map((item) => (
+                imgMap && imgMap.end && endComList.map((item) => (
                     <EndCom
                         key={item.id}
                         item={item}
                         movingStatus={movingStatus}
                         settingStatus={settingStatus}
                         openEditModal={openEditModal}
+                        imgMap={imgMap}
                     />
                 ))
             }
@@ -316,8 +367,7 @@ const Demo = () => {
                 onEditModalCancel={onEditModalCancel}
                 onEditModalConfirm={onEditModalConfirm}
             />
-
-        </div>
+        </DemoWrapper>
     )
 };
 

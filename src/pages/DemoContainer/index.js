@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
-import Test from './components/demo1';
-import Test2 from './components/demo2';
+import Demo1 from './components/Demo1';
+import Demo2 from './components/Demo2';
 import { Tabs } from 'antd'
 import './index.scss'
 
@@ -23,12 +23,12 @@ const DemoContainer = () => {
                 {
                     label: `Demo 1`,
                     key: 1,
-                    children: <Test />
+                    children: <Demo1 />
                 },
                 {
                     label: `Demo 2`,
                     key: 2,
-                    children: <Test2 />
+                    children: <Demo2 />
                 }
             ]}
         />

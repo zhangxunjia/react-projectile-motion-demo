@@ -5,20 +5,13 @@ import React, {
 import { ProjectileMotion } from 'src/components/ProjectileMotion';
 // import { ProjectileMotion } from 'react-projectile-motion';
 import { ReloadOutlined } from '@ant-design/icons'
-
-const projectileImgSrc = require('src/assets/images/dog1.png');
-const growUpImgSrc = require('src/assets/images/dog2.png');
-const binIcon = require('src/assets/images/bin.ico')
-
-// 图片预加载，该js被引入的时候就会执行，后续引入图片的时候就会通过强缓存拿到图片
-const imgDom = new Image();
-imgDom.src = projectileImgSrc;
-
+import { isRender } from 'src/tools/utils';
 
 const EndCom = (props) => {
     const {
         isRealoadVisible,
-        setIsRealoadVisible
+        setIsRealoadVisible,
+        imgList
     } = props
 
     const endingDom = useRef();
@@ -29,6 +22,8 @@ const EndCom = (props) => {
 
     // 动画结束
     const endingDomAnimationEnd = () => {
+        // 是否为移动端
+        const isMobile = /iPhone|iPad|iPod|Android|Windows Phone/i.test(navigator.userAgent);
         if(setIsRealoadVisible && !endingDomOriginalStyle.current && !dogGrowUpOriginalStyle.current) {
             endingDomOriginalStyle.current = JSON.parse(JSON.stringify(endingDom.current.style))
             dogGrowUpOriginalStyle.current = JSON.parse(JSON.stringify(dogGrowUp.current.style))
@@ -36,7 +31,7 @@ const EndCom = (props) => {
             endingDom.current.style.opacity = 0;
             endingDom.current.style.width = '0';
             dogGrowUp.current.style.opacity = 1;
-            dogGrowUp.current.style.width = '40%';
+            dogGrowUp.current.style.width = isMobile ? '60%' : '30%';
         }
     };
 
@@ -58,31 +53,39 @@ const EndCom = (props) => {
             endingDomAnimationName:'swing',
             additionalTransformValueInAnimate: 'scale(1.5)',
             duration: 1,
-            projectile: (
+            projectile: isRender(imgList, 1) && (
                 <img
                     className="dog-small"
-                    alt="dog1"
-                    src={projectileImgSrc}
+                    alt="dog-small"
+                    src={imgList[1].src}
                 />
             ),
             endingDomAnimationEnd
         });
-    }, []);
+    }, [imgList]);
 
     return (
         <>
-            <img
-                className="ending-bin"
-                ref={endingDom}
-                src={binIcon}
-                alt="binIcon"
-            />
-            <img
-                ref={dogGrowUp}
-                src={growUpImgSrc}
-                className="dog-grow-up"
-                alt="dogGrowUp"
-            />
+            {
+                isRender(imgList, 3) && (
+                    <img
+                        className="ending-bin"
+                        ref={endingDom}
+                        src={imgList[3].src}
+                        alt="binIcon"
+                    />
+                )
+            }
+            {
+                isRender(imgList, 4) && (
+                    <img
+                        ref={dogGrowUp}
+                        src={imgList[4].src}
+                        className="dog-grow-up"
+                        alt="dogGrowUp"
+                    />
+                )
+            }
             {
                 isRealoadVisible && (
                     <FloatButton

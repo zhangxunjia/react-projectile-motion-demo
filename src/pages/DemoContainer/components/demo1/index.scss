@@ -18,16 +18,22 @@
   .start{
     position: absolute;
     display: inline-block;
-    background: url('~src/assets/images/plus.png') center center no-repeat;
-    background-size: contain;
     border: 2px transparent dotted;
+    // 禁止img标签自带的拖动的残影
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
   }
   .end{
     position: absolute;
     display: inline-block;
-    background: url('~src/assets/images/shopCar.png') center center no-repeat;
-    background-size: contain;
     border: 2px transparent dotted;
+    // 禁止img标签自带的拖动的残影
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
   }
 
   .edit-status{

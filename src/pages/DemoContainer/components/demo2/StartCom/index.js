@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { ProjectileMotionStarter } from 'src/components/ProjectileMotion';
 // import { ProjectileMotionStarter } from 'react-projectile-motion';
+import { isRender } from 'src/tools/utils';
 
 const initialState = {
     isStickAnimatePlaying:false,
@@ -11,7 +12,8 @@ const initialState = {
 
 const StartCom = (props) => {
     const {
-        isRealoadVisible
+        isRealoadVisible,
+        imgList
     } = props
 
     const [state, dispatch] = useReducer((state, action) => ({ ...state, ...action }), initialState);
@@ -65,29 +67,49 @@ const StartCom = (props) => {
         <div
             className="start-com"
         >
+
             {/* 棍子 */}
-            <div
-                className={`
-                    stick 
-                    ${isStickAnimatePlaying ? 'stick-active' : ''}
-                `}
-            />
+            {
+                isRender(imgList, 0) && (
+                    <img
+                        // onError={() => loadError('stick')}
+                        src={imgList[0].src}
+                        alt="图片加载失败请刷新"
+                        className={`
+                            stick 
+                            ${isStickAnimatePlaying ? 'stick-active' : ''}
+                        `}
+                    />
+                )
+            }
             {/* 狗子 */}
-            <div
-                ref={startingDom}
-                className={`
-                    dog
-                    ${isRealoadVisible || dogGetHitted ? 'dog-inactive' : ''}
-                `}
-                onClick={triggerAnimation}
-            />
+            {
+                isRender(imgList, 1) && (
+                    <img
+                        src={imgList[1].src}
+                        alt="图片加载失败请刷新"
+                        ref={startingDom}
+                        className={`
+                            dog
+                            ${isRealoadVisible || dogGetHitted ? 'dog-inactive' : ''}
+                        `}
+                        onClick={triggerAnimation}
+                    />
+                )
+            }
             {/* bang */}
-            <div
-                className={`
-                    bang
-                    ${dogGetHitted ? 'bang-active' : ''}
-                `}
-            />
+            {
+                isRender(imgList, 2) && (
+                    <img
+                        src={imgList[2].src}
+                        alt="图片加载失败请刷新"
+                        className={`
+                            bang
+                            ${dogGetHitted ? 'bang-active' : ''}
+                        `}
+                    />
+                )
+            }
         </div>
     );
 };
