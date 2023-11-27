@@ -2,6 +2,8 @@ import React, {
     forwardRef
 } from 'react';
 import Draggable from 'react-draggable'
+import { useTranslation } from 'react-i18next';
+import { loadImageFailedTips } from 'src/data/constant';
 
 const StartEndDom = forwardRef((props, ref) => {
     const {
@@ -12,6 +14,7 @@ const StartEndDom = forwardRef((props, ref) => {
         imgMap,
         ...otherProps
     } = props
+    const { t } = useTranslation();
 
     return (
         <div
@@ -25,7 +28,7 @@ const StartEndDom = forwardRef((props, ref) => {
             >
                 <img
                     src={imgMap[type].src}
-                    alt="图片加载失败"
+                    alt={t(loadImageFailedTips)}
                     ref={ref}
                     className={`${type} ${settingStatus ? 'edit-status' : ''}`}
                     style={item.style}

@@ -11,6 +11,7 @@ import { uuid } from 'src/tools/utils'
 import Draggable from 'react-draggable';
 import EditModal from './components/EditModal'
 import 'animate.css';
+import { loadImageFailedTips } from 'src/data/constant';
 
 const initialState = {
     startComList: [
@@ -129,7 +130,7 @@ const Demo = () => {
                     }
                 })
             })
-            .catch(() => message.error('图片加载失败'))
+            .catch(() => message.error(t(loadImageFailedTips)))
             .finally(() => dispatch({
                 loading: false
             }))

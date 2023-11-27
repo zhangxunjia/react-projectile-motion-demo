@@ -8,6 +8,8 @@ import DemoWrapper from 'src/components/DemoWrapper';
 import { getImage } from 'src/tools/axios';
 import './index.scss';
 import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { loadImageFailedTips } from 'src/data/constant';
 
 const initialState = {
     // 重新加载按钮是否可见
@@ -50,6 +52,8 @@ const Test = () => {
         imgList
     } = state
 
+    const { t } = useTranslation();
+
     // 设置重新加载按钮是否可见
     const setIsRealoadVisible = (isRealoadVisible) => {
         dispatch({
@@ -71,7 +75,7 @@ const Test = () => {
                     }))
                 })
             })
-            .catch(() => message.error('图片加载失败'))
+            .catch(() => message.error(t(loadImageFailedTips)))
             .finally(() => dispatch({
                 loading: false
             }))

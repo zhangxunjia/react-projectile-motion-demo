@@ -4,6 +4,8 @@ import React, {
 import { ProjectileMotionStarter } from 'src/components/ProjectileMotion';
 // import { ProjectileMotionStarter } from 'react-projectile-motion';
 import { isRender } from 'src/tools/utils';
+import { useTranslation } from 'react-i18next';
+import { loadImageFailedTips } from 'src/data/constant';
 
 const initialState = {
     isStickAnimatePlaying:false,
@@ -22,6 +24,8 @@ const StartCom = (props) => {
         isStickAnimatePlaying,
         dogGetHitted
     } = state
+
+    const { t } = useTranslation();
 
     const startingDom = useRef();
 
@@ -74,7 +78,7 @@ const StartCom = (props) => {
                     <img
                         // onError={() => loadError('stick')}
                         src={imgList[0].src}
-                        alt="图片加载失败请刷新"
+                        alt={t(loadImageFailedTips)}
                         className={`
                             stick 
                             ${isStickAnimatePlaying ? 'stick-active' : ''}
@@ -87,7 +91,7 @@ const StartCom = (props) => {
                 isRender(imgList, 1) && (
                     <img
                         src={imgList[1].src}
-                        alt="图片加载失败请刷新"
+                        alt={t(loadImageFailedTips)}
                         ref={startingDom}
                         className={`
                             dog
@@ -102,7 +106,7 @@ const StartCom = (props) => {
                 isRender(imgList, 2) && (
                     <img
                         src={imgList[2].src}
-                        alt="图片加载失败请刷新"
+                        alt={t(loadImageFailedTips)}
                         className={`
                             bang
                             ${dogGetHitted ? 'bang-active' : ''}

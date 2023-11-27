@@ -26,5 +26,6 @@
   "Not a legal function": "不是合法的函数",
   "Not a legal dom": "不是合法的dom",
   "startingDom.current is the starting position of the projectile motion specified by the user": "startingDom.current 为用户指定的抛物运动开始的位置",
-  "endingDom.current is the end position of the parabolic motion specified by the user": "endingDom.current为用户指定的抛物运动结束的位置"
+  "endingDom.current is the end position of the parabolic motion specified by the user": "endingDom.current为用户指定的抛物运动结束的位置",
+  "Image loading failed, please refresh the page": "图片加载失败，请刷新页面"
 }

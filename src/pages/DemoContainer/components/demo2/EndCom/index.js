@@ -6,6 +6,8 @@ import { ProjectileMotion } from 'src/components/ProjectileMotion';
 // import { ProjectileMotion } from 'react-projectile-motion';
 import { ReloadOutlined } from '@ant-design/icons'
 import { isRender } from 'src/tools/utils';
+import { useTranslation } from 'react-i18next';
+import { loadImageFailedTips } from 'src/data/constant';
 
 const EndCom = (props) => {
     const {
@@ -13,6 +15,8 @@ const EndCom = (props) => {
         setIsRealoadVisible,
         imgList
     } = props
+
+    const { t } = useTranslation();
 
     const endingDom = useRef();
     const dogGrowUp = useRef();
@@ -72,7 +76,7 @@ const EndCom = (props) => {
                         className="ending-bin"
                         ref={endingDom}
                         src={imgList[3].src}
-                        alt="binIcon"
+                        alt={t(loadImageFailedTips)}
                     />
                 )
             }
@@ -82,7 +86,7 @@ const EndCom = (props) => {
                         ref={dogGrowUp}
                         src={imgList[4].src}
                         className="dog-grow-up"
-                        alt="dogGrowUp"
+                        alt={t(loadImageFailedTips)}
                     />
                 )
             }
