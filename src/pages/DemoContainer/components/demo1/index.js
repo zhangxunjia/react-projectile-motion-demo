@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useReducer, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import EndCom from './components/EndCom';
 import StartCom from './components/StartCom';
 import { getImage } from 'src/tools/axios'
@@ -91,6 +92,8 @@ const Demo = () => {
         loading
     } = state;
 
+    const { t } = useTranslation();
+
     const demoRef = useRef();
     // 记录开始拖动 / 点击 时的FloatButton的临时位置存储信息
     const draggableDomPositionRef = useRef();
@@ -160,7 +163,7 @@ const Demo = () => {
 
     // 新增startCom
     const addStartCom = () => {
-        message.success('已新增startDom')
+        message.success(t('startingDom has been added'))
         dispatch({
             startComList: [
                 ...startComList,
@@ -174,7 +177,7 @@ const Demo = () => {
 
     // 新增endCom
     const addEndCom = () => {
-        message.success('已新增endCom')
+        message.success(t('endingDom has been added'))
         dispatch({
             endComList: [
                 ...endComList,
@@ -335,25 +338,25 @@ const Demo = () => {
                     icon={!isEditing ? <SettingOutlined /> : <CheckOutlined />}
                 >
                     <FloatButton
-                        tooltip="更改配置"
+                        tooltip={t('Settings')}
                         icon={<SettingOutlined />}
                         onClick={handleChangeSetting}
                         onTouchStart={handleChangeSetting}
                     />
                     <FloatButton
-                        tooltip="增加startDom"
+                        tooltip={t('Add a new startingDom')}
                         icon={<PlusOutlined />}
                         onClick={handleAddStartCom}
                         onTouchStart={handleAddStartCom}
                     />
                     <FloatButton
-                        tooltip="增加endingDom"
+                        tooltip={t('Add a new endingDom')}
                         icon={<ShoppingCartOutlined />}
                         onClick={handleAddEndCom}
                         onTouchStart={handleAddEndCom}
                     />
                     <FloatButton
-                        tooltip="移动"
+                        tooltip={t('Move')}
                         icon={<AimOutlined />}
                         onClick={handleSetMoveStatus}
                         onTouchStart={handleSetMoveStatus}

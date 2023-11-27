@@ -8,6 +8,7 @@ import 'ace-builds/src-noconflict/ext-language_tools'; // 代码联想
 // import ReactHtmlParser from 'react-html-parser';
 import JSXParser from 'react-jsx-parser';
 import { animateOptions } from './constants'
+import { useTranslation } from 'react-i18next';
 
 const EditModal = (props) => {
     const {
@@ -17,6 +18,8 @@ const EditModal = (props) => {
         onEditModalConfirm,
         editType
     } = props
+
+    const { t } = useTranslation();
 
     const [form] = Form.useForm();
 
@@ -33,7 +36,7 @@ const EditModal = (props) => {
                                 projectileMotionPorps[key] = eval(porps[key]);
                                 projectileMotionPorps[`${key}Str`] = porps[key];
                             } catch {
-                                message.error(`${key}不是合法的函数`)
+                                message.error(`${key}${t('Not a legal function')}`)
                                 return
                             }
                             // dom处理
@@ -42,7 +45,7 @@ const EditModal = (props) => {
                                 projectileMotionPorps[key] = <JSXParser jsx={porps[key]} />;
                                 projectileMotionPorps[`${key}Str`] = porps[key];
                             } catch {
-                                message.error(`${key}不是合法的dom`)
+                                message.error(`${key}${t('Not a legal dom')}`)
                                 return
                             }
                             // 普通参数的处理
@@ -82,18 +85,18 @@ const EditModal = (props) => {
     }, [open])
 
     const formItem = useMemo(() => editType === 'start'
-        ? startFormItem()
-        : endFormItem(), [editType])
+        ? startFormItem(t)
+        : endFormItem(t), [editType])
 
     // 传参样例
     const showSample = () => {
         let value = ''
         // 开始端
         if(editType === 'start') {
-            value = `props.triggerProjectileMotion(\n  "${form.getFieldValue('subscription')}",\n  startingDom.current // startingDom.current为用户指定的抛物运动开始的位置 \n);`
+            value = `props.triggerProjectileMotion(\n  "${form.getFieldValue('subscription')}",\n  startingDom.current // ${t('startingDom.current is the starting position of the projectile motion specified by the user')} \n);`
             // 结束端
         } else {
-            value = `props.setProjectileMotionPorps({\n  endingDom: endingDom.current, // endingDom.current为用户指定的抛物运动结束的位置\n`
+            value = `props.setProjectileMotionPorps({\n  endingDom: endingDom.current, // ${t('endingDom.current is the end position of the parabolic motion specified by the user')}\n`
             const formFieldsValue = form.getFieldsValue()
             for (let key in formFieldsValue) {
                 if (formFieldsValue[key] !== undefined && formFieldsValue[key] !== '') {
@@ -115,7 +118,7 @@ const EditModal = (props) => {
 
         Modal.info({
             width: "80%",
-            title: '传参样例',
+            title: t('Example of pass parameter'),
             content: renderAceEditor({
                 name:'showSample',
                 readOnly:true,
@@ -127,20 +130,20 @@ const EditModal = (props) => {
     return (
         <Modal
             open={open}
-            title="传参"
+            title={t('Pass parameter')}
             width="80%"
             onCancel={onEditModalCancel}
             onOk={onOk}
             className="edit-modal"
             footer={[
                 <Button key="back" onClick={onEditModalCancel}>
-                    取消
+                    {t('Cancel')}
                 </Button>,
                 <Button key="example" type="primary" onClick={showSample}>
-                    传参样例
+                    {t('Example of pass parameter')}
                 </Button>,
                 <Button key="submit" type="primary" onClick={onOk}>
-                    保存
+                    {t('Save')}
                 </Button>
             ]}
         >
@@ -156,9 +159,9 @@ const EditModal = (props) => {
 
 };
 
-const startFormItem = () => (
+const startFormItem = (t) => (
     <>
-        <Form.Item name="subscription" label="subscription（pubsub订阅名称）" rules={[{ required: true }]}>
+        <Form.Item name="subscription" label={t('subscription (pubsub subscription name, type: string)')} rules={[{ required: true }]}>
             <Input />
         </Form.Item>
     </>
@@ -186,12 +189,12 @@ const renderAceEditor = (props) => (
     />
 )
 
-const endFormItem = () => (
+const endFormItem = (t) => (
     <>
-        <Form.Item name="subscription" label="subscription（pubsub订阅名称，类型：string）" rules={[{ required: true }]}>
+        <Form.Item name="subscription" label={t('subscription (pubsub subscription name, type: string)')} rules={[{ required: true }]}>
             <Input />
         </Form.Item>
-        <Form.Item name="muiltipleProjectile" label="muiltipleProjectile（是否允许出现多个抛掷物，类型：boolean）" >
+        <Form.Item name="muiltipleProjectile" label={t('muiltipleProjectile (whether multiple throwable objects are allowed to appear, type: boolean)')} >
             <Select
                 allowClear
                 placeholder="true"
@@ -201,10 +204,10 @@ const endFormItem = () => (
                 ]}
             />
         </Form.Item>
-        <Form.Item name="projectile" label="projectile（抛掷物，如果要添加className需把样式写在全局，支持jsx写法，类型：ReactNode）" >
+        <Form.Item name="projectile" label={t('projectile (projectile, if you want to add className, you need to write the style globally, support jsx writing, type: ReactNode)')} >
             {renderAceEditor({name:'projectile'})}
         </Form.Item>
-        <Form.Item name="duration" label="duration（抛掷动画持续的时间，类型：number）" >
+        <Form.Item name="duration" label={t('duration (the duration of the throwing animation, unit: seconds, type: number)')} >
             <InputNumber
                 size="large"
                 min={0}
@@ -212,7 +215,7 @@ const endFormItem = () => (
                 style={{ width: '100%' }}
             />
         </Form.Item>
-        <Form.Item name="zIndex" label="zIndex（设置抛掷物的zIndex，类型：number）" >
+        <Form.Item name="zIndex" label={t('zIndex (set the zIndex of the projectile, type: number)')} >
             <InputNumber
                 size="large"
                 min={0}
@@ -220,7 +223,7 @@ const endFormItem = () => (
                 style={{ width: '100%' }}
             />
         </Form.Item>
-        <Form.Item name="needEndingDomAnimation" label="needEndingDomAnimation（endingDom是否需要被抛掷物击中后动画，类型：boolean）" >
+        <Form.Item name="needEndingDomAnimation" label={t('needEndingDomAnimation (whether endingDom needs to animate after being hit by a projectile, type: boolean)')} >
             <Select
                 placeholder="true"
                 options={[
@@ -229,13 +232,13 @@ const endFormItem = () => (
                 ]}
             />
         </Form.Item>
-        <Form.Item name="projectileMovmentEnd" label="projectileMovmentEnd（抛物运动动画结束回调，类型：function） 例如: () => { console.log(1) }" >
+        <Form.Item name="projectileMovmentEnd" label={t('projectileMovmentEnd (projectile motion animation end callback, type: function) For example: () => { console.log(1) }')} >
             {renderAceEditor({name:'projectileMovmentEnd'})}
         </Form.Item>
-        <Form.Item name="endingDomAnimationEnd" label="endingDomAnimationEnd（endingDom动画结束回调，类型：function）例如: () => { console.log(1) }" >
+        <Form.Item name="endingDomAnimationEnd" label={t('endingDomAnimationEnd (endingDom animation end callback, type: function) For example: () => { console.log(1) }')} >
             {renderAceEditor({name:'endingDomAnimationEnd'})}
         </Form.Item>
-        <Form.Item name="endingDomAnimationDuration" label="endingDomAnimationDuration（endingDom被抛掷物击中后动画持续时间，类型：number）" >
+        <Form.Item name="endingDomAnimationDuration" label={t('endingDomAnimationDuration (endingDom animation duration after being hit by a projectile, unit: seconds, type: number)')} >
             <InputNumber
                 size="large"
                 min={0}
@@ -243,20 +246,20 @@ const endFormItem = () => (
                 style={{ width: '100%' }}
             />
         </Form.Item>
-        <Form.Item name="endingDomAnimationName" label={<span>endingDomAnimationName（endingDom被抛掷物击中后的animation的名称，类型：string， 本Demo内置animate,若项目需使用请先安装进行npm install animate.css --save 然后导入import 'animate.css', 或按需引入需要的样式  详情请参考 <a target="_blank" href="https://animate.style/" alt="#" rel="noreferrer" >https://animate.style/</a> ）</span>} >
+        <Form.Item name="endingDomAnimationName" label={<span>{t("endingDomAnimationName (the name of the animation after endingDom is hit by a projectile. The animation needs to be defined globally, type: string. This Demo has built-in animate.css. If the project needs to use it, please install it first and perform npm install animate.css --save and then import it globally. import 'animate.css', or introduce the required styles as needed, please refer to")} <a target="_blank" href="https://animate.style/" alt="#" rel="noreferrer" >https://animate.style/</a> ）</span>} >
             <Select
                 showSearch
                 options={animateOptions}
             >
             </Select>
         </Form.Item>
-        <Form.Item name="additionalTransformValueInAnimate" label="additionalTransformValueInAnimate（补充的动画的transform值，传入该值后会生成新的类名，该类会整合endingDomAnimationName对应的keyframe除最后一帧外的其他帧，形成新的类，然后供endingDom应用。可以设置rotate scale translate skew 等值，若设置多个请用空格隔开）" >
+        <Form.Item name="additionalTransformValueInAnimate" label={t('additionalTransformValueInAnimate (supplementary animation transform value. After passing in this value, a new class name will be generated. This class will integrate all frames except the last frame of the keyframe corresponding to endingDomAnimationName to form a new class, which can then be used by endingDom. It can be set rotate scale translate skew and other values, if you set multiple values, please separate them with spaces)')} >
             <Input />
         </Form.Item>
-        <Form.Item name="wrapClassName" label="wrapClassName（抛掷物外层容器的类名，类型：string）">
+        <Form.Item name="wrapClassName" label={t('wrapClassName (class name of the outer container of the projectile, type: string)')}>
             <Input />
         </Form.Item>
-        <Form.Item name="isInitialYAxisReverse" label="isInitialYAxisReverse（抛物运动初速度y轴方向是否为反方向，类型：boolean）" >
+        <Form.Item name="isInitialYAxisReverse" label={t('isInitialYAxisReverse (whether the initial velocity of the parabolic motion is in the opposite direction of the y-axis, type: boolean)')} >
             <Select
                 allowClear
                 placeholder="true"
@@ -266,7 +269,7 @@ const endFormItem = () => (
                 ]}
             />
         </Form.Item>
-        <Form.Item name="projectileTransition" label="projectileTransition（自定义抛掷物的transition属性若传入此属性则duration和isInitialYAxisReverse将失效，类型：string）" >
+        <Form.Item name="projectileTransition" label={t('projectileTransition (if the transition attribute of a custom projectile is passed in, duration and isInitialYAxisReverse will be invalid, type: string)')} >
             <Input />
         </Form.Item>
     </>
