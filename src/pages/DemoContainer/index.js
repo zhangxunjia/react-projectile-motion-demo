@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import Demo1 from './components/Demo1'
 import Demo2 from './components/Demo2'
 import { Button, Popover, Tabs } from 'antd'
@@ -27,6 +27,27 @@ const DemoContainer = () => {
         i18n.changeLanguage(language)
     }, [language])
 
+    // tabs右侧按钮内容 如果为移动端则直接显示按钮，否则包裹一层popover
+    const languageButton = useMemo(() => {
+        // 是否为移动端
+        const isMobile = /iPhone|iPad|iPod|Android|Windows Phone/i.test(navigator.userAgent);
+        const content = (
+            <Button type="primary" shape="circle" onClick={changeLanguage}>
+                {language === 'en' ? 'EN' : '中'}
+            </Button>
+        )
+
+        return isMobile
+            ? content
+            : (
+                <Popover
+                    content="简体中文 / English"
+                >
+                    {content}
+                </Popover>
+            )
+    }, [language])
+
     return (
         <Tabs
             className="demo-container"
@@ -34,15 +55,7 @@ const DemoContainer = () => {
             onChange={(activeKey) => dispatch({ activeKey })}
             destroyInactiveTabPane
             tabBarExtraContent={{
-                right: (
-                    <Popover
-                        content="简体中文 / English"
-                    >
-                        <Button type="primary" shape="circle" onClick={changeLanguage}>
-                            {language === 'en' ? 'EN' : '中'}
-                        </Button>
-                    </Popover>
-                )
+                right: languageButton
             }}
             items={[
                 {
