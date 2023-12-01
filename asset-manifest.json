@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/react-projectile-motion-demo/static/css/main.f0c8c12c.css",
-    "main.js": "/react-projectile-motion-demo/static/js/main.d77efc1b.js",
+    "main.js": "/react-projectile-motion-demo/static/js/main.849422a5.js",
     "static/media/dog-grow-up.png": "/react-projectile-motion-demo/static/media/dog-grow-up.b9543cee3b9ddede28d7.png",
     "static/media/bin.ico": "/react-projectile-motion-demo/static/media/bin.615c1d078047a00139f6.ico",
     "static/media/dog-small.png": "/react-projectile-motion-demo/static/media/dog-small.ce5a61d096dc74655d5a.png",
     "index.html": "/react-projectile-motion-demo/index.html",
     "main.f0c8c12c.css.map": "/react-projectile-motion-demo/static/css/main.f0c8c12c.css.map",
-    "main.d77efc1b.js.map": "/react-projectile-motion-demo/static/js/main.d77efc1b.js.map"
+    "main.849422a5.js.map": "/react-projectile-motion-demo/static/js/main.849422a5.js.map"
   },
   "entrypoints": [
     "static/css/main.f0c8c12c.css",
-    "static/js/main.d77efc1b.js"
+    "static/js/main.849422a5.js"
   ]
 }
