@@ -253,7 +253,7 @@ const endFormItem = (t) => (
             >
             </Select>
         </Form.Item>
-        <Form.Item name="additionalTransformValueInAnimate" label={t('additionalTransformValueInAnimate (supplementary animation transform value. After passing in this value, a new class name will be generated. This class will integrate all frames except the last frame of the keyframe corresponding to endingDomAnimationName to form a new class, which can then be used by endingDom. It can be set rotate scale translate skew and other values, if you set multiple values, please separate them with spaces)')} >
+        <Form.Item name="additionalTransformValueInAnimate" label={<span>{t('additionalTransformValueInAnimate (supplementary animation transform value. After passing in this value, a new class name will be generated. This class will integrate all frames except the last frame of the keyframe corresponding to endingDomAnimationName to form a new class, which can then be used by endingDom. It can be set rotate scale translate skew and other values, if you set multiple values, please separate them with spaces)')} <a target="_blank" href="https://raw.githubusercontent.com/zhangxunjia/pictures/main/react-projectile-motion/additionalTransformValueInAnimate_en.png" alt="#" rel="noreferrer" >{t('Graphical details')}</a></span>}>
             <Input />
         </Form.Item>
         <Form.Item name="wrapClassName" label={t('wrapClassName (class name of the outer container of the projectile, type: string)')}>
