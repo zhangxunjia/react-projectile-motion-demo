@@ -1,2 +1,2 @@
-export { default as ProjectileMotion } from './components/ProjectileMotion';
-export { default as ProjectileMotionStarter } from './components/ProjectileMotionStarter';
+export { default as withProjectileMotion } from './components/withProjectileMotion';
+export { default as withProjectileMotionStarter } from './components/withProjectileMotionStarter';

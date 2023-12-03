@@ -7,8 +7,8 @@ import pubsub from 'pubsub-js';
  * 高阶组件,通过此组件包裹的组件的props接收到的triggerProjectileMotion函数可用于触发抛掷物运动
  * A higher-order component, through which the wrapped component's props receive the triggerProjectileMotion function that can be used to initiate projectile motion
  */
-const ProjectileMotionStarter = (WrappedComponent) => {
-    const ProjectileMotionStarter = memo(forwardRef((props, ref) => {
+const withProjectileMotionStarter = (WrappedComponent) => {
+    const withProjectileMotionStarter = memo(forwardRef((props, ref) => {
         const [state, dispatch] = useReducer((state, action) => ({ ...state, ...action }), {
             goMove: 0, // 运动计数器 - moving counter
             startingDom: null, // 起始dom - dom for starting
@@ -53,7 +53,7 @@ const ProjectileMotionStarter = (WrappedComponent) => {
         );
     }));
 
-    return ProjectileMotionStarter;
+    return withProjectileMotionStarter;
 };
 
-export default ProjectileMotionStarter;
+export default withProjectileMotionStarter;

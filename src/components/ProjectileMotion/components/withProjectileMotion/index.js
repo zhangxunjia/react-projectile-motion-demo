@@ -436,7 +436,7 @@ const MotionEntity = (props) => {
  * 高阶组件,通过此组件包裹的组件的props接收到的setProjectileMotionPorps函数可用于设置抛物运动属性
  * A higher-order component, through which the wrapped component's props receive the setProjectileMotionPorps function that can be used to set the projectile motion properties
  */
-const ProjectileMotion = (component) => {
+const withProjectileMotion = (component) => {
     // 不引起组件更新的props
     // Props that do not cause component updates
     const filterKeyList = {
@@ -449,7 +449,7 @@ const ProjectileMotion = (component) => {
             .some((i) => prevProps[i] !== nextProps[i])
     );
 
-    const ProjectileMotion = memo(forwardRef((props, ref) => {
+    const withProjectileMotion = memo(forwardRef((props, ref) => {
         const [state, dispatch] = useReducer((state, action) => ({ ...state, ...action }), {
             projectileMotionPorps: {}, // ProjectileMotion的props - ProjectileMotion props
             resetSetting: 0 // 重置设置计数器 - reset setting counter
@@ -482,7 +482,7 @@ const ProjectileMotion = (component) => {
         );
     }));
 
-    return ProjectileMotion;
+    return withProjectileMotion;
 };
 
-export default ProjectileMotion;
+export default withProjectileMotion;

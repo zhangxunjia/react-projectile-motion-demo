@@ -2,9 +2,9 @@ import React, {
     memo,
     useRef
 } from 'react';
-// import { ProjectileMotionStarter } from 'react-projectile-motion';
-import { ProjectileMotionStarter } from 'src/components/ProjectileMotion';
-// import { ProjectileMotionStarter } from 'react-projectile-motion';
+import { withProjectileMotionStarter } from 'react-projectile-motion';
+// import { withProjectileMotionStarter } from 'src/components/ProjectileMotion';
+// import { withProjectileMotionStarter } from 'react-projectile-motion';
 // import Draggable from 'react-draggable'
 import StartEndDom from '../StartEndDom'
 
@@ -54,7 +54,7 @@ const filterKeyList = {
 }
 
 export default memo(
-    ProjectileMotionStarter(StartCom),
+    withProjectileMotionStarter(StartCom),
     (prevProps, nextProps) => !Object.keys(prevProps)
         .filter((item) => !filterKeyList[item])
         .some((i) => prevProps[i] !== nextProps[i])

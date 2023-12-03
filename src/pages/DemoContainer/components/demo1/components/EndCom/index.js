@@ -1,8 +1,6 @@
-import React, {
-    useRef, useEffect, memo
-} from 'react';
-// import { ProjectileMotion } from 'react-projectile-motion';
-import { ProjectileMotion } from 'src/components/ProjectileMotion';
+import React, { useRef, useEffect, memo } from 'react'
+// import { withProjectileMotion } from 'src/components/ProjectileMotion'
+import { withProjectileMotion } from 'react-projectile-motion';
 // import Draggable from 'react-draggable'
 import StartEndDom from '../StartEndDom'
 
@@ -18,24 +16,22 @@ const EndCom = (props) => {
         ...otherProps
     } = props
 
-    const endingDom = useRef();
+    const endingDom = useRef()
 
     useEffect(() => {
-        if(!movingStatus) {
-            setProjectileMotionPorps && setProjectileMotionPorps({
-                ...item.projectileMotionPorps,
-                endingDom: endingDom.current
-            });
+        if (!movingStatus) {
+            setProjectileMotionPorps &&
+        setProjectileMotionPorps({
+            ...item.projectileMotionPorps,
+            endingDom: endingDom.current
+        })
         }
-    }, [
-        item.projectileMotionPorps,
-        movingStatus
-    ]);
+    }, [item.projectileMotionPorps, movingStatus])
 
     const onDomClick = () => {
-        // 设置状态下点击进行设置
-        if(settingStatus) {
-            openEditModal && openEditModal(item, type);
+    // 设置状态下点击进行设置
+        if (settingStatus) {
+            openEditModal && openEditModal(item, type)
         }
     }
 
@@ -49,18 +45,19 @@ const EndCom = (props) => {
             onClick={onDomClick}
             {...otherProps}
         />
-    );
-};
+    )
+}
 
 // 不引起组件更新的props
 // Props that do not cause component updates
 const filterKeyList = {
     openEditModal: true
-};
+}
 
 export default memo(
-    ProjectileMotion(EndCom),
-    (prevProps, nextProps) => !Object.keys(prevProps)
-        .filter((item) => !filterKeyList[item])
-        .some((i) => prevProps[i] !== nextProps[i])
-);
+    withProjectileMotion(EndCom),
+    (prevProps, nextProps) =>
+        !Object.keys(prevProps)
+            .filter((item) => !filterKeyList[item])
+            .some((i) => prevProps[i] !== nextProps[i])
+)

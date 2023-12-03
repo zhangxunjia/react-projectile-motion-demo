@@ -1,8 +1,8 @@
 import React, {
     useRef, useReducer, useEffect
 } from 'react';
-import { ProjectileMotionStarter } from 'src/components/ProjectileMotion';
-// import { ProjectileMotionStarter } from 'react-projectile-motion';
+// import { withProjectileMotionStarter } from 'src/components/ProjectileMotion';
+import { withProjectileMotionStarter } from 'react-projectile-motion';
 import { isRender } from 'src/tools/utils';
 import { useTranslation } from 'react-i18next';
 import { loadImageFailedTips } from 'src/data/constant';
@@ -118,4 +118,4 @@ const StartCom = (props) => {
     );
 };
 
-export default ProjectileMotionStarter(StartCom);
+export default withProjectileMotionStarter(StartCom);
