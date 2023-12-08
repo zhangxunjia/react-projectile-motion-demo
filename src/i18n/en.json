@@ -28,5 +28,6 @@
   "Not a legal dom": "Not a legal dom",
   "startingDom.current is the starting position of the projectile motion specified by the user": "startingDom.current is the starting position of the projectile motion specified by the user",
   "endingDom.current is the end position of the parabolic motion specified by the user": "endingDom.current is the end position of the parabolic motion specified by the user",
-  "Image loading failed, please refresh the page":"Image loading failed, please refresh the page"
+  "Image loading failed, please refresh the page":"Image loading failed, please refresh the page",
+  "additionalTransformValueInAnimate_en.png":"additionalTransformValueInAnimate_en.png"
 }

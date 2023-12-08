@@ -19,7 +19,7 @@
   "wrapClassName (class name of the outer container of the projectile, type: string)": "wrapClassName（抛掷物外层容器的类名，类型：string）",
   "isInitialYAxisReverse (whether the initial velocity of the parabolic motion is in the opposite direction of the y-axis, type: boolean)": "isInitialYAxisReverse（抛物运动初速度y轴方向是否为反方向，类型：boolean）",
   "projectileTransition (if the transition attribute of a custom projectile is passed in, duration and isInitialYAxisReverse will be invalid, type: string)": "projectileTransition（自定义抛掷物的transition属性若传入此属性则duration和isInitialYAxisReverse将失效，类型：string）",
-  "Graphical details": "图形详情",
+  "Graphical details": "图示详情",
   "Cancel": "取消",
   "Save": "保存",
   "Example of pass parameter": "传参示例",
@@ -28,5 +28,6 @@
   "Not a legal dom": "不是合法的dom",
   "startingDom.current is the starting position of the projectile motion specified by the user": "startingDom.current 为用户指定的抛物运动开始的位置",
   "endingDom.current is the end position of the parabolic motion specified by the user": "endingDom.current为用户指定的抛物运动结束的位置",
-  "Image loading failed, please refresh the page": "图片加载失败，请刷新页面"
+  "Image loading failed, please refresh the page": "图片加载失败，请刷新页面",
+  "additionalTransformValueInAnimate_en.png":"additionalTransformValueInAnimate_zh.png"
 }
