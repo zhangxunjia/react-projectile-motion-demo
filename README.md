@@ -1,6 +1,6 @@
 English | [简体中文](./README-zh_CN.md)
 
-该项目为react-projectile-motion的demo展示项目
+This project is a demo display project of react-projectile-motion
 
 ## ✨ Display address
 <a href="https://zhangxunjia.github.io/react-projectile-motion-demo/" >https://zhangxunjia.github.io/react-projectile-motion-demo/</a>
