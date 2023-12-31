@@ -96,7 +96,7 @@ const EditModal = (props) => {
             value = `props.triggerProjectileMotion(\n  "${form.getFieldValue('subscription')}",\n  startingDom.current // ${t('startingDom.current is the starting position of the projectile motion specified by the user')} \n);`
             // 结束端
         } else {
-            value = `props.setProjectileMotionPorps({\n  endingDom: endingDom.current, // ${t('endingDom.current is the end position of the parabolic motion specified by the user')}\n`
+            value = `props.setProjectileMotionPorps({\n  endingDom: endingDom.current, // ${t('endingDom.current is the end position of the projectile motion specified by the user')}\n`
             const formFieldsValue = form.getFieldsValue()
             for (let key in formFieldsValue) {
                 if (formFieldsValue[key] !== undefined && formFieldsValue[key] !== '') {
@@ -161,7 +161,7 @@ const EditModal = (props) => {
 
 const startFormItem = (t) => (
     <>
-        <Form.Item name="subscription" label={t('subscription (pubsub subscription name, type: string)')} rules={[{ required: true }]}>
+        <Form.Item name="subscription" label={t('subscription (This is the pubsub subscription name. The parameters passed here need to be consistent with the subscription in the withProjectileMotion in the endingDom. In this demo, the endingDom refers to the shopping cart, type: string)')} rules={[{ required: true }]}>
             <Input />
         </Form.Item>
     </>
@@ -191,10 +191,10 @@ const renderAceEditor = (props) => (
 
 const endFormItem = (t) => (
     <>
-        <Form.Item name="subscription" label={t('subscription (pubsub subscription name, type: string)')} rules={[{ required: true }]}>
+        <Form.Item name="subscription" label={t('subscription (This is the pubsub subscription name. The parameters passed here need to be consistent with the subscription in the withProjectileMotionStarter in the startingDom. in this demo, the startingDom refers to the plus sign, type: string)')} rules={[{ required: true }]}>
             <Input />
         </Form.Item>
-        <Form.Item name="muiltipleProjectile" label={t('muiltipleProjectile (whether multiple throwable objects are allowed to appear, type: boolean)')} >
+        <Form.Item name="muiltipleProjectile" label={t('muiltipleProjectile (Whether multiple projectiles are allowed, type: boolean)')} >
             <Select
                 allowClear
                 placeholder="true"
@@ -207,7 +207,7 @@ const endFormItem = (t) => (
         <Form.Item name="projectile" label={t('projectile (projectile, if you want to add className, you need to write the style globally, support jsx writing, type: ReactNode)')} >
             {renderAceEditor({name:'projectile'})}
         </Form.Item>
-        <Form.Item name="duration" label={t('duration (the duration of the throwing animation, unit: seconds, type: number)')} >
+        <Form.Item name="duration" label={t('duration (The duration of the projectile motion, unit: seconds, type: number)')} >
             <InputNumber
                 size="large"
                 min={0}
@@ -215,7 +215,7 @@ const endFormItem = (t) => (
                 style={{ width: '100%' }}
             />
         </Form.Item>
-        <Form.Item name="zIndex" label={t('zIndex (set the zIndex of the projectile, type: number)')} >
+        <Form.Item name="zIndex" label={t('zIndex (The zIndex of projectile, type: number)')} >
             <InputNumber
                 size="large"
                 min={0}
@@ -223,7 +223,7 @@ const endFormItem = (t) => (
                 style={{ width: '100%' }}
             />
         </Form.Item>
-        <Form.Item name="needEndingDomAnimation" label={t('needEndingDomAnimation (whether endingDom needs to animate after being hit by a projectile, type: boolean)')} >
+        <Form.Item name="needEndingDomAnimation" label={t('needEndingDomAnimation (Does endingDom need to animate after being hit by a projectile, type: boolean)')} >
             <Select
                 placeholder="true"
                 options={[
@@ -259,7 +259,7 @@ const endFormItem = (t) => (
         <Form.Item name="wrapClassName" label={t('wrapClassName (class name of the outer container of the projectile, type: string)')}>
             <Input />
         </Form.Item>
-        <Form.Item name="isInitialYAxisReverse" label={t('isInitialYAxisReverse (whether the initial velocity of the parabolic motion is in the opposite direction of the y-axis, type: boolean)')} >
+        <Form.Item name="isInitialYAxisReverse" label={t('isInitialYAxisReverse (whether the initial velocity of the projectile motion is in the opposite direction of the y-axis, type: boolean)')} >
             <Select
                 allowClear
                 placeholder="true"
@@ -269,7 +269,7 @@ const endFormItem = (t) => (
                 ]}
             />
         </Form.Item>
-        <Form.Item name="projectileTransition" label={t('projectileTransition (if the transition attribute of a custom projectile is passed in, duration and isInitialYAxisReverse will be invalid, type: string)')} >
+        <Form.Item name="projectileTransition" label={t('projectileTransition (This is the transition attribute of the projectile. If this attribute is passed in, the duration and isInitialYAxisReverse will be invalid., type: string)')} >
             <Input />
         </Form.Item>
     </>
